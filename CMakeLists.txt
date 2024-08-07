@@ -15,6 +15,7 @@ set(CMAKE_SOURCE_DIR src)
 
 set(SOURCES main.cpp)
 message("Building sources ${SOURCES}")
+add_subdirectory(lib/custom_math)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 add_executable(cmake_test ${SOURCES})
