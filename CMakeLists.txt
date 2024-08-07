@@ -14,4 +14,4 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_HOME_DIRECTORY}/bin)
 set(CMAKE_SOURCE_DIR src)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
-add_executable(cmake_test main.cpp)
+add_executable(cmake_test main.cpp src/custom_math.cpp)
