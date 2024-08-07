@@ -1,4 +1,4 @@
-#include "src/custom_math.h"
+#include "lib/custom_math.h"
 #include <iostream>
 
 #ifndef SYSTEM
