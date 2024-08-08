@@ -12,8 +12,12 @@ endif()
 
 # https://github.com/catchorg/Catch2/blob/devel/docs/cmake-integration.md#installing-catch2-from-git-repository
 find_package(Catch2 3 REQUIRED)
-add_executable(test test.cpp)
-target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
+add_executable(ctest test.cpp)
+target_link_libraries(ctest PRIVATE Catch2::Catch2WithMain)
+
+include(CTest)
+include(Catch)
+catch_discover_tests(ctest)
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_SOURCE_DIR src)
