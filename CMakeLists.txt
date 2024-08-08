@@ -10,6 +10,7 @@ elseif(WIN32)
   add_definitions(-DSYSTEM="WINDOWS")
 endif()
 
+# https://github.com/catchorg/Catch2/blob/devel/docs/cmake-integration.md#installing-catch2-from-git-repository
 find_package(Catch2 3 REQUIRED)
 add_executable(test test.cpp)
 target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
