@@ -10,6 +10,10 @@ elseif(WIN32)
   add_definitions(-DSYSTEM="WINDOWS")
 endif()
 
+find_package(Catch2 3 REQUIRED)
+add_executable(test test.cpp)
+target_link_libraries(test PRIVATE Catch2::Catch2WithMain)
+
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_SOURCE_DIR src)
 
