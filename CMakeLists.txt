@@ -12,12 +12,20 @@ endif()
 
 # https://github.com/catchorg/Catch2/blob/devel/docs/cmake-integration.md#installing-catch2-from-git-repository
 find_package(Catch2 3 REQUIRED)
-add_executable(ctest test.cpp)
-target_link_libraries(ctest PRIVATE Catch2::Catch2WithMain)
-
-include(CTest)
-include(Catch)
-catch_discover_tests(ctest)
+# Glob tests from test dir
+file(GLOB tests CONFIGURE_DEPENDS "*test/*.h" "*test/*.cpp")
+foreach(name ${tests})
+  message("${name}")
+  file(RELATIVE_PATH basename ${CMAKE_HOME_DIRECTORY}/test "${name}")
+  file(RELATIVE_PATH name ${CMAKE_HOME_DIRECTORY} "${name}")
+  string(REPLACE ".cpp" "" basename "${basename}")
+  message("Adding ${name} with as ${basename}")
+  add_executable("${basename}" ${name})
+  target_link_libraries(${basename} PRIVATE Catch2::Catch2WithMain)
+  include(CTest)
+  include(Catch)
+  catch_discover_tests(${basename})
+endforeach()
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(CMAKE_SOURCE_DIR src)
